@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay at Home University | 加利顿大学</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            color: #222;
+            scroll-behavior: smooth;
+        }
+        .mit-red { color: #A31F34; }
+        .bg-mit-red { background-color: #A31F34; }
+        .border-mit-red { border-color: #A31F34; }
+        
+        /* 导航动画 */
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+            cursor: pointer;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #A31F34;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+
+        .stu-logo {
+            background-color: #A31F34;
+            color: white;
+            padding: 0.25rem 0.75rem;
+            font-weight: 900;
+            font-size: 1.875rem;
+            letter-spacing: -0.05em;
+            line-height: 1;
+            display: inline-block;
+            border-radius: 2px;
+        }
+
+        /* 隐藏不活跃视图 */
+        .view-content { display: none; }
+        .view-content.active { display: block; }
+
+        /* 卡片悬停 */
+        .service-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(163, 31, 52, 0.1);
+        }
+
+        /* 加载点动画 */
+        .loading-dots span { animation: blink 1.4s infinite both; }
+        .loading-dots span:nth-child(2) { animation-delay: .2s; }
+        .loading-dots span:nth-child(3) { animation-delay: .4s; }
+        @keyframes blink { 0% { opacity: .2; } 20% { opacity: 1; } 100% { opacity: .2; } }
+    </style>
+</head>
+<body class="bg-white">
+
+    <!-- 顶部导航 -->
+    <div class="bg-gray-100 py-2 px-6 text-[10px] font-bold tracking-widest uppercase border-b border-gray-200 flex justify-between items-center">
+        <div class="flex space-x-6">
+            <a href="#" class="hover:text-mit-red">STU 邮箱系统</a>
+            <a href="#" class="hover:text-mit-red">数字图书馆</a>
+            <a href="#" class="hover:text-mit-red">高性能计算</a>
+        </div>
+        <div class="flex space-x-4">
+            <span>在线用户: 14,209</span>
+            <span class="text-green-600">● 校园网状态: 极佳</span>
+        </div>
+    </div>
+
+    <!-- 主导航 -->
+    <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <div class="stu-logo">STU</div>
+                <div class="flex flex-col">
+                    <a href="javascript:location.reload()" class="text-2xl font-black tracking-tighter leading-none uppercase">
+                        STAY AT HOME <span class="mit-red">UNIVERSITY</span>
+                    </a>
+                    <span class="text-[10px] font-bold text-gray-400 mt-1 tracking-[0.3em] uppercase">加利顿大学 · 智慧生活中心</span>
+                </div>
+            </div>
+            
+            <nav id="main-nav" class="hidden lg:flex space-x-8 text-xs font-black uppercase tracking-widest">
+                <span data-target="home-view" class="nav-link active">首页</span>
+                <span data-target="news-view" class="nav-link">新闻公告</span>
+                <span data-target="academic-view" class="nav-link">教学办公</span>
+                <span data-target="research-view" class="nav-link">科研资源</span>
+                <span data-target="life-view" class="nav-link">校园生活</span>
+            </nav>
+
+            <button class="lg:hidden p-2">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                </svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- 动态视图容器 -->
+    <main id="view-container" class="max-w-7xl mx-auto px-6 py-12 min-h-[60vh]">
+        
+        <!-- 首页视图 (Home) -->
+        <section id="home-view" class="view-content active">
+            <div class="relative mb-20 overflow-hidden group">
+                <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80" alt="Spotlight" class="w-full h-[500px] object-cover transition-transform duration-700 group-hover:scale-105">
+                <div class="absolute bottom-10 left-10 bg-mit-red text-white p-10 max-w-xl shadow-2xl">
+                    <h2 class="text-xs font-bold tracking-[0.2em] uppercase mb-4 opacity-80">今日聚焦</h2>
+                    <h3 class="text-4xl font-black leading-tight mb-4 tracking-tighter">
+                        加利顿大学：重新定义“全日制远程教育”的极限
+                    </h3>
+                    <p class="text-sm opacity-90 leading-relaxed mb-6">
+                        本校科研团队最新发表在《卧室科学》上的论文表明，穿着睡衣进行复杂逻辑推演，比穿着西装的平均延迟降低了 12 毫秒。
+                    </p>
+                    <button class="border-2 border-white px-6 py-2 text-xs font-black uppercase tracking-widest hover:bg-white hover:text-mit-red transition-all">探索更多</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="border-t-4 border-black pt-6">
+                    <h4 class="text-xs font-black uppercase tracking-widest text-mit-red mb-4">公告栏</h4>
+                    <ul class="space-y-4 text-sm font-bold">
+                        <li class="hover:underline cursor-pointer">· 关于 2026 春季学期“网费减免”政策公示</li>
+                        <li class="hover:underline cursor-pointer">· 计算机系：高性能计算集群升级通知</li>
+                        <li class="hover:underline cursor-pointer">· 讲座：如何在家实现 10Gbps 内网环境</li>
+                    </ul>
+                </div>
+                <div class="border-t-4 border-black pt-6">
+                    <h4 class="text-xs font-black uppercase tracking-widest mb-4 text-mit-red">学术快讯</h4>
+                    <p class="text-sm leading-relaxed mb-4 font-medium italic">“STU 正在通过光纤将世界各地的智力连接在一起。我们没有墙，只有连接。”</p>
+                    <a href="#" class="text-xs font-black uppercase border-b-2 border-mit-red pb-1">阅读研究报告</a>
+                </div>
+                <div class="border-t-4 border-black pt-6">
+                    <h4 class="text-xs font-black uppercase tracking-widest mb-4 text-mit-red">校园生活</h4>
+                    <div class="bg-gray-100 p-4">
+                        <span class="text-2xl font-black">15ms</span>
+                        <p class="text-[10px] uppercase font-bold text-gray-500 mt-2 tracking-widest">全校平均 Ping 值</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 新闻公告视图 (News) -->
+        <section id="news-view" class="view-content">
+            <h2 class="text-4xl font-black tracking-tighter mb-12 uppercase border-b-8 border-mit-red inline-block">News & Announcements</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <!-- 重要新闻 -->
+                <div class="space-y-12">
+                    <div class="group cursor-pointer">
+                        <div class="text-xs font-black text-mit-red mb-2 uppercase tracking-widest">行政通知 | 2026.02.05</div>
+                        <h3 class="text-2xl font-black group-hover:underline mb-4">加利顿大学关于完善“数字化宿舍”报修响应机制的通知</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">为了保障同学们在“数字宿舍”（即家里）的科研效率，学校行政处决定将 WiFi 故障响应级别提升至最高级...</p>
+                    </div>
+                    <div class="group cursor-pointer">
+                        <div class="text-xs font-black text-mit-red mb-2 uppercase tracking-widest">公示信息 | 2026.02.01</div>
+                        <h3 class="text-2xl font-black group-hover:underline mb-4">2026年度“加利顿杰出奖学金”拟推荐名单公示</h3>
+                        <p class="text-gray-600 text-sm leading-relaxed">经各虚拟学院初评，现将具备“全天候宅家研究”潜力的 50 名同学进行公示...</p>
+                    </div>
+                </div>
+                <!-- 学术讲座 -->
+                <div class="bg-gray-50 p-8">
+                    <h4 class="text-xl font-black uppercase tracking-tighter mb-6 border-b-2 border-black pb-2">学术讲座预约</h4>
+                    <div class="space-y-8">
+                        <div class="flex gap-4">
+                            <div class="bg-mit-red text-white p-3 text-center h-fit">
+                                <span class="block text-lg font-black leading-none">08</span>
+                                <span class="text-[10px] uppercase font-bold">Feb</span>
+                            </div>
+                            <div>
+                                <h5 class="font-black text-sm uppercase">从猫咪干扰中抢救代码：一种鲁棒性算法研究</h5>
+                                <p class="text-xs text-gray-500 mt-1">主讲人: 张宅教授 | 线上 302 虚拟报告厅</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="bg-gray-300 text-gray-600 p-3 text-center h-fit">
+                                <span class="block text-lg font-black leading-none">12</span>
+                                <span class="text-[10px] uppercase font-bold">Feb</span>
+                            </div>
+                            <div>
+                                <h5 class="font-black text-sm uppercase">基于高性能计算的咖啡冲泡动力学模拟</h5>
+                                <p class="text-xs text-gray-500 mt-1">主讲人: Dr. Bean | Zoom 频道: 888-999-000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教学办公视图 (Academic) -->
+        <section id="academic-view" class="view-content">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-12">
+                <!-- 学生门户 -->
+                <div class="lg:col-span-2 space-y-12">
+                    <h2 class="text-3xl font-black tracking-tighter uppercase mb-8">学生教务中心 (Student Portal)</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div class="bg-white border-2 border-gray-100 p-6 service-card">
+                            <h4 class="font-black text-mit-red text-sm uppercase tracking-widest mb-4">今日课表</h4>
+                            <div class="space-y-3">
+                                <div class="p-3 bg-gray-50 rounded border-l-4 border-mit-red text-xs">
+                                    <span class="font-bold">09:00 - 11:00</span>
+                                    <p class="font-black uppercase mt-1 text-sm">计算机图形学：如何生成逼真的沙发纹理</p>
+                                </div>
+                                <div class="p-3 bg-gray-50 rounded border-l-4 border-gray-300 text-xs">
+                                    <span class="font-bold text-gray-400">14:00 - 16:00</span>
+                                    <p class="font-black uppercase mt-1 text-sm text-gray-400 italic">午睡力学 (已结课)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white border-2 border-gray-100 p-6 service-card">
+                            <h4 class="font-black text-mit-red text-sm uppercase tracking-widest mb-4">成绩与绩点</h4>
+                            <div class="flex items-end space-x-4">
+                                <span class="text-5xl font-black">3.92</span>
+                                <span class="text-xs font-bold text-gray-400 mb-1 uppercase tracking-widest">/ 4.0 GPA</span>
+                            </div>
+                            <button class="mt-6 text-[10px] font-black uppercase text-mit-red border-b border-mit-red">申请电子成绩单</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- 教师入口 -->
+                <div class="bg-gray-100 p-8 rounded">
+                    <h3 class="font-black uppercase tracking-widest text-xs mb-8 text-gray-500">教师管理入口</h3>
+                    <div class="space-y-4">
+                        <button class="w-full bg-white border border-gray-200 p-4 text-left font-black text-sm hover:border-mit-red transition-colors flex justify-between items-center">
+                            录入课程成绩
+                            <span class="text-mit-red">→</span>
+                        </button>
+                        <button class="w-full bg-white border border-gray-200 p-4 text-left font-black text-sm hover:border-mit-red transition-colors flex justify-between items-center">
+                            教学任务申报
+                            <span class="text-mit-red">→</span>
+                        </li>
+                        <button class="w-full bg-white border border-gray-200 p-4 text-left font-black text-sm hover:border-mit-red transition-colors flex justify-between items-center">
+                            虚拟实验室管理
+                            <span class="text-mit-red">→</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 科研资源视图 (Research) -->
+        <section id="research-view" class="view-content">
+            <h2 class="text-3xl font-black tracking-tighter uppercase mb-12">科研平台与资源 (Resources)</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-16">
+                <div class="p-6 bg-mit-red text-white">
+                    <h4 class="text-xs font-black uppercase tracking-widest mb-4 opacity-70">数字图书馆</h4>
+                    <p class="text-xl font-black mb-6 leading-tight underline decoration-2 underline-offset-4">访问 20k+ 全文学术期刊</p>
+                    <span class="text-[10px] font-bold uppercase">IEEE, ScienceDirect, Nature</span>
+                </div>
+                <div class="p-6 border-2 border-black">
+                    <h4 class="text-xs font-black uppercase tracking-widest mb-4 text-gray-400">高性能计算</h4>
+                    <div class="flex justify-between items-center mb-4">
+                        <span class="text-sm font-black">集群 A100-STU</span>
+                        <span class="text-green-500 font-bold text-xs uppercase animate-pulse tracking-widest">运行中</span>
+                    </div>
+                    <div class="w-full bg-gray-200 h-1 mt-1">
+                        <div class="bg-black h-1 w-[72%]"></div>
+                    </div>
+                    <p class="text-[10px] text-gray-500 mt-2 font-bold uppercase">当前负载: 72.4%</p>
+                </div>
+                <div class="p-6 bg-gray-100">
+                    <h4 class="text-xs font-black uppercase tracking-widest mb-4 text-gray-400 text-center">大型仪器预约</h4>
+                    <div class="flex flex-col items-center justify-center py-4">
+                        <span class="text-3xl">🔬</span>
+                        <span class="mt-4 text-[10px] font-black uppercase tracking-widest">远程电子显微镜</span>
+                    </div>
+                </div>
+                <div class="p-6 bg-gray-100 flex flex-col justify-between">
+                    <h4 class="text-xs font-black uppercase tracking-widest mb-4 text-gray-400 text-center">内部工作流</h4>
+                    <button class="bg-black text-white text-[10px] font-black uppercase tracking-[0.2em] py-3 rounded">启动 OA 系统</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 校园生活视图 (Life) -->
+        <section id="life-view" class="view-content">
+            <h2 class="text-3xl font-black tracking-tighter uppercase mb-12">校园生活指南 (Campus Life)</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div class="border-l-8 border-mit-red p-8 bg-gray-50">
+                        <h4 class="text-sm font-black uppercase tracking-widest mb-4">虚拟校车 (WiFi 网络路径图)</h4>
+                        <div class="text-xs space-y-2 font-mono text-gray-500">
+                            <div>[01] 核心路由器 -> 书房实验室 <span class="text-green-500 font-bold">(1ms)</span></div>
+                            <div>[02] 核心路由器 -> 客厅咖啡站 <span class="text-yellow-600 font-bold">(12ms)</span></div>
+                            <div>[03] 核心路由器 -> 卧室休息区 <span class="text-red-500 font-bold">(35ms)</span></div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="p-6 border-2 border-gray-100 service-card text-center">
+                            <span class="text-2xl mb-4 block">🍱</span>
+                            <h5 class="text-xs font-black uppercase tracking-widest">食堂信息</h5>
+                            <p class="text-[10px] text-gray-400 mt-2">推荐外卖榜单更新中</p>
+                        </div>
+                        <div class="p-6 border-2 border-gray-100 service-card text-center">
+                            <span class="text-2xl mb-4 block">🛠️</span>
+                            <h5 class="text-xs font-black uppercase tracking-widest">宿舍报修</h5>
+                            <p class="text-[10px] text-gray-400 mt-2">灯泡不亮、光纤断线申请</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-100 rounded-lg flex items-center justify-center p-12 overflow-hidden relative min-h-[400px]">
+                    <div class="text-center z-10">
+                        <h4 class="font-black text-2xl uppercase tracking-tighter mb-4">数字校园 3D 地图</h4>
+                        <p class="text-xs text-gray-500 max-w-xs mx-auto mb-8 font-bold">这是您的私人虚拟校区布局，目前 100% 覆盖。已标记 4 个高频活动点。</p>
+                        <button class="bg-mit-red text-white px-8 py-3 font-black text-[10px] uppercase tracking-widest hover:scale-105 transition-transform">进入虚拟漫游</button>
+                    </div>
+                    <div class="absolute inset-0 opacity-10 pointer-events-none">
+                        <!-- 背景装饰 -->
+                        <svg viewBox="0 0 100 100" class="w-full h-full">
+                            <path d="M10,10 L90,10 L90,90 L10,90 Z" fill="none" stroke="currentColor" stroke-width="0.5" stroke-dasharray="2,2"/>
+                            <circle cx="30" cy="30" r="10" stroke="currentColor" fill="none"/>
+                            <circle cx="70" cy="70" r="20" stroke="currentColor" fill="none"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- AI Chat Widget -->
+    <div id="ai-chat-widget">
+        <button id="chat-toggle" class="bg-mit-red text-white p-5 rounded-full shadow-2xl hover:scale-105 transition-transform flex items-center justify-center border-none cursor-pointer">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+            <span class="font-black text-xs uppercase tracking-widest">教授在线</span>
+        </button>
+
+        <div id="chat-window" class="chat-window absolute bottom-24 right-0 bg-white border border-gray-200 rounded-xl flex-col overflow-hidden">
+            <div class="bg-mit-red text-white p-5 font-black text-xs tracking-widest uppercase flex justify-between items-center shadow-md">
+                <span>STU 远程咨询专家</span>
+                <button id="close-chat" class="hover:opacity-70 border-none bg-transparent text-white text-2xl cursor-pointer leading-none">&times;</button>
+            </div>
+            <div id="chat-messages" class="chat-messages p-6 text-sm space-y-6 bg-gray-50/50">
+                <div class="bg-white border border-gray-100 p-4 rounded-xl text-gray-700 shadow-sm leading-relaxed">
+                    您好，我是加利顿大学在线教学委员会的专家。关于本校的数字行政、教务选课、科研计算或宿舍 WiFi 诊断，您有什么想咨询的？
+                </div>
+            </div>
+            <div class="p-5 border-t border-gray-100 flex gap-3 bg-white">
+                <input type="text" id="chat-input" placeholder="请输入您的问题..." class="flex-1 text-sm border border-gray-200 px-4 py-3 rounded-lg focus:outline-none focus:border-mit-red transition-colors">
+                <button id="send-btn" class="bg-black text-white px-5 py-3 rounded-lg text-xs font-black uppercase tracking-widest hover:bg-mit-red transition-colors border-none cursor-pointer">发送</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="bg-gray-100 mt-24 py-24">
+        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 text-center md:text-left">
+            <div class="flex flex-col items-center md:items-start">
+                <div class="stu-logo mb-6 text-4xl">STU</div>
+                <h3 class="font-black text-2xl mb-4 uppercase tracking-tighter">加利顿大学</h3>
+                <p class="text-sm text-gray-500 font-medium leading-relaxed">
+                    中国·云端·加利顿虚拟省<br>
+                    邮编: 0xFFFFFFFF<br>
+                    电话: 400-WIFI-FAST
+                </p>
+            </div>
+            <div>
+                <h4 class="font-black uppercase tracking-widest text-[10px] mb-8 text-gray-400">电子资源</h4>
+                <ul class="text-sm space-y-4 font-bold list-none p-0 text-gray-800">
+                    <li><a href="#" class="hover:text-mit-red no-underline transition-colors">STU 邮箱系统</a></li>
+                    <li><a href="#" class="hover:text-mit-red no-underline transition-colors">图书馆登录</a></li>
+                    <li><a href="#" class="hover:text-mit-red no-underline transition-colors">VPN 配置指南</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-black uppercase tracking-widest text-[10px] mb-8 text-gray-400">校园联系</h4>
+                <ul class="text-sm space-y-4 font-bold list-none p-0 text-gray-800">
+                    <li><a href="#" class="hover:text-mit-red no-underline transition-colors">招生办咨询</a></li>
+                    <li><a href="#" class="hover:text-mit-red no-underline transition-colors">行政公示中心</a></li>
+                    <li><a href="#" class="hover:text-mit-red no-underline transition-colors">网络故障报修</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-black uppercase tracking-widest text-[10px] mb-8 text-gray-400">社区连接</h4>
+                <div class="flex justify-center md:justify-start space-x-4">
+                    <div class="w-10 h-10 border-2 border-gray-300 flex items-center justify-center rounded font-black hover:border-mit-red hover:text-mit-red cursor-pointer transition-all">𝕏</div>
+                    <div class="w-10 h-10 border-2 border-gray-300 flex items-center justify-center rounded font-black hover:border-mit-red hover:text-mit-red cursor-pointer transition-all">gh</div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-12 py-8 border-t border-gray-200 text-[9px] font-black uppercase tracking-[0.4em] text-gray-400 text-center">
+            &copy; 2026 STAY AT HOME UNIVERSITY | 加利顿大学 | 思想与舒适并存 MENS ET SOFA
+        </div>
+    </footer>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            const apiKey = "";
+            const chatToggle = document.getElementById('chat-toggle');
+            const chatWindow = document.getElementById('chat-window');
+            const closeChat = document.getElementById('close-chat');
+            const sendBtn = document.getElementById('send-btn');
+            const chatInput = document.getElementById('chat-input');
+            const chatMessages = document.getElementById('chat-messages');
+            const navLinks = document.querySelectorAll('#main-nav .nav-link');
+            const viewContents = document.querySelectorAll('.view-content');
+
+            // 视图切换逻辑
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    const targetViewId = link.getAttribute('data-target');
+                    
+                    // 更新导航状态
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+
+                    // 切换显示内容
+                    viewContents.forEach(view => {
+                        view.classList.remove('active');
+                        if (view.id === targetViewId) {
+                            view.classList.add('active');
+                        }
+                    });
+
+                    // 滚动到顶部
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                });
+            });
+
+            // 聊天窗逻辑
+            const toggleChat = () => {
+                const isVisible = chatWindow.style.display === 'flex';
+                chatWindow.style.display = isVisible ? 'none' : 'flex';
+                if (!isVisible) chatInput.focus();
+            };
+
+            chatToggle?.addEventListener('click', toggleChat);
+            closeChat?.addEventListener('click', () => chatWindow.style.display = 'none');
+
+            const appendMessage = (text, isUser = false) => {
+                const msgDiv = document.createElement('div');
+                msgDiv.className = isUser 
+                    ? "bg-mit-red text-white p-4 rounded-2xl rounded-tr-none self-end ml-auto max-w-[85%] shadow-md font-medium" 
+                    : "bg-white border border-gray-100 p-4 rounded-2xl rounded-tl-none text-gray-700 self-start mr-auto max-w-[85%] shadow-sm leading-relaxed";
+                msgDiv.textContent = text;
+                chatMessages.appendChild(msgDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+                return msgDiv;
+            };
+
+            async function callGemini(prompt) {
+                const systemPrompt = "你现在是加利顿大学 (STU) 的教授。这所大学是一所充满黑色幽默感的极客大学。校训是 MENS ET SOFA (思想与沙发)。你的口吻要非常正式且学术化，回答关于教务选课、科研计算集群分配、宿舍报修（其实是网络故障）等问题时，要体现出那种‘世界级名校’的傲慢与幽默。";
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+                
+                let retries = 0;
+                const maxRetries = 5;
+                
+                while (retries < maxRetries) {
+                    try {
+                        const response = await fetch(url, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify({
+                                contents: [{ parts: [{ text: prompt }] }],
+                                systemInstruction: { parts: [{ text: systemPrompt }] }
+                            })
+                        });
+                        if (!response.ok) throw new Error('API Error');
+                        const data = await response.json();
+                        return data.candidates?.[0]?.content?.parts?.[0]?.text || "抱歉，正在处理超大计算任务，请稍后再试。";
+                    } catch (err) {
+                        retries++;
+                        if (retries === maxRetries) return "网络波动，教授掉线了。";
+                        await new Promise(res => setTimeout(res, Math.pow(2, retries) * 1000));
+                    }
+                }
+            }
+
+            const handleSend = async () => {
+                const text = chatInput.value.trim();
+                if (!text) return;
+                appendMessage(text, true);
+                chatInput.value = '';
+
+                const loadingDiv = document.createElement('div');
+                loadingDiv.className = "bg-gray-100 p-4 rounded-2xl rounded-tl-none text-gray-400 loading-dots self-start mr-auto italic";
+                loadingDiv.innerHTML = "教授正在通过加密隧道传输回应<span>.</span><span>.</span><span>.</span>";
+                chatMessages.appendChild(loadingDiv);
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+
+                const response = await callGemini(text);
+                chatMessages.removeChild(loadingDiv);
+                appendMessage(response);
+            };
+
+            sendBtn?.addEventListener('click', handleSend);
+            chatInput?.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') handleSend();
+            });
+        });
+    </script>
+
+</body>
+</html>

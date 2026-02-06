@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stay at Home University | 加利顿大学</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+</head>
+<body class="bg-white">
+    <!-- 用户角色入口栏 -->
+    <div class="user-role-bar">
+        <div class="user-role-content">
+            <div class="user-roles">
+                <a href="#" class="user-role-link">学生</a>
+                <span class="role-divider">|</span>
+                <a href="#" class="user-role-link">教职工</a>
+                <span class="role-divider">|</span>
+                <a href="#" class="user-role-link">校友</a>
+                <span class="role-divider">|</span>
+                <a href="#" class="user-role-link">访客</a>
+                <span class="role-divider">|</span>
+                <a href="#" class="user-role-link">招聘</a>
+                <span class="role-divider">|</span>
+                <a href="#" class="user-role-link">捐赠</a>
+            </div>
+            <div class="lang-switch">
+                <a href="#" class="lang-link">EN</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 顶部快速链接栏 -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="top-bar-links">
+                <a href="#" class="top-bar-link">门户</a>
+                <a href="#" class="top-bar-link">网络</a>
+                <a href="#" class="top-bar-link">邮箱</a>
+                <a href="#" class="top-bar-link">直播</a>
+                <a href="#" class="top-bar-link">图书馆</a>
+                <a href="#" class="top-bar-link">医学部</a>
+                <a href="#" class="top-bar-link">领导信箱</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 主导航 -->
+    <header class="main-header">
+        <div class="header-container">
+            <div class="header-logo-section">
+                <div class="stu-logo">STU</div>
+                <div class="header-title">
+                    <a href="javascript:location.reload()" class="header-title-link">
+                        STAY AT HOME <span class="mit-red">UNIVERSITY</span>
+                    </a>
+                    <span class="header-subtitle">加利顿大学 · 智慧生活中心</span>
+                </div>
+            </div>
+            
+            <nav id="main-nav" class="main-nav">
+                <span data-target="home-view" class="nav-link active">北大概况</span>
+                <span data-target="admission-view" class="nav-link">招生</span>
+                <span data-target="academic-view" class="nav-link">学部与院系</span>
+                <span data-target="education-view" class="nav-link">教育教学</span>
+                <span data-target="research-view" class="nav-link">科学研究</span>
+                <span data-target="cooperation-view" class="nav-link">合作交流</span>
+                <span data-target="life-view" class="nav-link">校园生活</span>
+            </nav>
+
+            <button class="mobile-menu-toggle" id="mobileMenuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- 动态视图容器 -->
+    <main id="view-container" class="view-container">
+        
+        <!-- 首页视图 (Home) - 北大概况 -->
+        <section id="home-view" class="view-content active">
+            <!-- 大图轮播 -->
+            <div class="carousel-section">
+                <div class="carousel-container">
+                    <div class="carousel-slide active">
+                        <div class="carousel-image" style="background: linear-gradient(135deg, #A31F34 0%, #8B1A2A 100%);">
+                            <div class="carousel-content">
+                                <div class="carousel-label">今日聚焦</div>
+                                <h2 class="carousel-title">加利顿大学：重新定义"全日制远程教育"的极限</h2>
+                                <p class="carousel-text">本校科研团队最新发表在《卧室科学》上的论文表明，穿着睡衣进行复杂逻辑推演，比穿着西装的平均延迟降低了 12 毫秒。</p>
+                                <button class="carousel-btn">了解更多</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-image" style="background: linear-gradient(135deg, #1a1a1a 0%, #333 100%);">
+                            <div class="carousel-content">
+                                <div class="carousel-label">科研突破</div>
+                                <h2 class="carousel-title">化学与分子工程学院取得重大科学突破</h2>
+                                <p class="carousel-text">实现了酰胺键的变革性生物合成，为药物研发开辟新路径。</p>
+                                <button class="carousel-btn">阅读详情</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-slide">
+                        <div class="carousel-image" style="background: linear-gradient(135deg, #2c5f8d 0%, #1a3d5c 100%);">
+                            <div class="carousel-content">
+                                <div class="carousel-label">校园活动</div>
+                                <h2 class="carousel-title">首届首都高校大学生学术年会</h2>
+                                <p class="carousel-text">汇聚全国顶尖学子，展示最新研究成果，促进学术交流与合作。</p>
+                                <button class="carousel-btn">查看详情</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-controls">
+                        <button class="carousel-prev" id="carouselPrev">‹</button>
+                        <button class="carousel-next" id="carouselNext">›</button>
+                    </div>
+                    <div class="carousel-indicators">
+                        <span class="indicator active" data-slide="0"></span>
+                        <span class="indicator" data-slide="1"></span>
+                        <span class="indicator" data-slide="2"></span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 校训和简介 -->
+            <div class="motto-section">
+                <div class="motto-content">
+                    <h3 class="motto-text">加利顿是常为新的，<br>改进的运动的先锋，<br>要使中国向着好的，<br>往上的道路走。</h3>
+                    <div class="motto-links">
+                        <a href="#" class="motto-link">加利顿简介</a>
+                        <a href="#" class="motto-link">现任领导</a>
+                        <a href="#" class="motto-link">历任领导</a>
+                        <a href="#" class="motto-link">组织机构</a>
+                        <a href="#" class="motto-link">历史名人</a>
+                        <a href="#" class="motto-link">信息公开</a>
+                        <a href="#" class="motto-link">标识系统</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 内容区块 -->
+            <div class="content-blocks">
+                <div class="content-block">
+                    <div class="block-header">
+                        <h3 class="block-title">招生信息</h3>
+                        <p class="block-subtitle">燕园画卷美不胜收，恰似你将要留在这里的青春年华。加利顿大学欢迎你！</p>
+                    </div>
+                    <div class="block-links">
+                        <a href="#" class="block-link">本科生</a>
+                        <a href="#" class="block-link">研究生</a>
+                        <a href="#" class="block-link">留学生</a>
+                        <a href="#" class="block-link">继续教育</a>
+                        <a href="#" class="block-link">学生奖助信息</a>
+                        <a href="#" class="block-link">暑期学校</a>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <div class="block-header">
+                        <h3 class="block-title">学部与院系</h3>
+                        <p class="block-subtitle">勤奋、严谨、求实、创新。</p>
+                    </div>
+                    <div class="block-links">
+                        <a href="#" class="block-link">理学部</a>
+                        <a href="#" class="block-link">信息科学与技术学部</a>
+                        <a href="#" class="block-link">工学部</a>
+                        <a href="#" class="block-link">人文学部</a>
+                        <a href="#" class="block-link">社会科学学部</a>
+                        <a href="#" class="block-link">经济与管理学部</a>
+                        <a href="#" class="block-link">跨学科类</a>
+                        <a href="#" class="block-link">医学部</a>
+                        <a href="#" class="block-link">深圳研究生院</a>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <div class="block-header">
+                        <h3 class="block-title">教育教学</h3>
+                        <p class="block-subtitle">思想自由、兼容并包。教育应指导社会，而非追逐社会。</p>
+                    </div>
+                    <div class="block-links">
+                        <a href="#" class="block-link">师资队伍</a>
+                        <a href="#" class="block-link">管理部门</a>
+                        <a href="#" class="block-link">课程设置</a>
+                        <a href="#" class="block-link">海外学习</a>
+                        <a href="#" class="block-link">课表查询</a>
+                        <a href="#" class="block-link">华文慕课</a>
+                        <a href="#" class="block-link">教学网</a>
+                        <a href="#" class="block-link">证书验证</a>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <div class="block-header">
+                        <h3 class="block-title">科学研究</h3>
+                        <p class="block-subtitle">博学之，审问之，慎思之，明辨之，笃行之。</p>
+                    </div>
+                    <div class="block-links">
+                        <a href="#" class="block-link">科研成果</a>
+                        <a href="#" class="block-link">研究机构</a>
+                        <a href="#" class="block-link">学术期刊</a>
+                        <a href="#" class="block-link">管理部门</a>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <div class="block-header">
+                        <h3 class="block-title">合作交流</h3>
+                        <p class="block-subtitle">志于道，据于德，依于仁，游于艺。</p>
+                    </div>
+                    <div class="block-links">
+                        <a href="#" class="block-link">国际交流</a>
+                        <a href="#" class="block-link">国内合作</a>
+                        <a href="#" class="block-link">教育基金会</a>
+                        <a href="#" class="block-link">港澳台交流</a>
+                        <a href="#" class="block-link">北京论坛</a>
+                        <a href="#" class="block-link">孔子学院</a>
+                    </div>
+                </div>
+
+                <div class="content-block">
+                    <div class="block-header">
+                        <h3 class="block-title">校园生活</h3>
+                        <p class="block-subtitle">秋冬春夏，伴随着四时的运行，青春和燕园融为一体，加利顿成为永恒。</p>
+                    </div>
+                    <div class="block-links">
+                        <a href="#" class="block-link">菁菁校园</a>
+                        <a href="#" class="block-link">讲座演出</a>
+                        <a href="#" class="block-link">艺术生活</a>
+                        <a href="#" class="block-link">体育健康</a>
+                        <a href="#" class="block-link">社团活动</a>
+                        <a href="#" class="block-link">档案馆藏</a>
+                        <a href="#" class="block-link">管理服务</a>
+                        <a href="#" class="block-link">校历</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新闻要闻 -->
+            <div class="news-highlight">
+                <div class="news-header">
+                    <h2 class="news-title">加利顿 · 要闻</h2>
+                    <div class="news-tabs">
+                        <span class="news-tab active">新闻网</span>
+                        <span class="news-tab">校内通知</span>
+                        <span class="news-tab">图片网</span>
+                    </div>
+                </div>
+                <div class="news-grid-main">
+                    <div class="news-main-item">
+                        <div class="news-date">2026.02.05</div>
+                        <h3 class="news-item-title">化学与分子工程学院雷晓光团队取得重大科学突破</h3>
+                        <p class="news-item-excerpt">实现了酰胺键的变革性生物合成，为药物研发开辟新路径...</p>
+                    </div>
+                    <div class="news-sidebar">
+                        <div class="news-side-item">
+                            <div class="news-side-date">02.01</div>
+                            <h4 class="news-side-title">首届首都高校大学生学术年会</h4>
+                        </div>
+                        <div class="news-side-item">
+                            <div class="news-side-date">01.28</div>
+                            <h4 class="news-side-title">恭祝加利顿全校师生、海内外校友和各界友人新年快乐！</h4>
+                        </div>
+                        <div class="news-side-item">
+                            <div class="news-side-date">01.25</div>
+                            <h4 class="news-side-title">2025年加利顿大学重要新闻</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 招生视图 -->
+        <section id="admission-view" class="view-content">
+            <h2 class="section-title-large">招生信息</h2>
+            <div class="admission-grid">
+                <div class="admission-card">
+                    <h3 class="admission-card-title">本科生</h3>
+                    <p class="admission-card-desc">探索我们的本科项目，开启学术之旅</p>
+                    <a href="#" class="admission-card-link">了解更多 →</a>
+                </div>
+                <div class="admission-card">
+                    <h3 class="admission-card-title">研究生</h3>
+                    <p class="admission-card-desc">推进您的学术生涯，深入研究领域</p>
+                    <a href="#" class="admission-card-link">了解更多 →</a>
+                </div>
+                <div class="admission-card">
+                    <h3 class="admission-card-title">留学生</h3>
+                    <p class="admission-card-desc">加入我们的国际学术社区</p>
+                    <a href="#" class="admission-card-link">了解更多 →</a>
+                </div>
+                <div class="admission-card">
+                    <h3 class="admission-card-title">继续教育</h3>
+                    <p class="admission-card-desc">终身学习，持续成长</p>
+                    <a href="#" class="admission-card-link">了解更多 →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教育教学视图 -->
+        <section id="education-view" class="view-content">
+            <h2 class="section-title-medium">教育教学</h2>
+            <div class="education-layout">
+                <div class="education-main">
+                    <h3 class="section-title-medium">学生教务中心 (Student Portal)</h3>
+                    <div class="portal-grid">
+                        <div class="portal-card">
+                            <h4 class="portal-card-label">今日课表</h4>
+                            <div class="schedule-list">
+                                <div class="schedule-item active">
+                                    <span class="schedule-time">09:00 - 11:00</span>
+                                    <p class="schedule-course">计算机图形学：如何生成逼真的沙发纹理</p>
+                                </div>
+                                <div class="schedule-item">
+                                    <span class="schedule-time">14:00 - 16:00</span>
+                                    <p class="schedule-course">午睡力学 (已结课)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portal-card">
+                            <h4 class="portal-card-label">成绩与绩点</h4>
+                            <div class="gpa-display">
+                                <span class="gpa-value">3.92</span>
+                                <span class="gpa-max">/ 4.0 GPA</span>
+                            </div>
+                            <button class="gpa-btn">申请电子成绩单</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 合作交流视图 -->
+        <section id="cooperation-view" class="view-content">
+            <h2 class="section-title-medium">合作交流</h2>
+            <div class="cooperation-grid">
+                <div class="cooperation-card">
+                    <h3 class="cooperation-title">国际交流</h3>
+                    <p class="cooperation-desc">与世界顶尖大学建立合作关系</p>
+                </div>
+                <div class="cooperation-card">
+                    <h3 class="cooperation-title">国内合作</h3>
+                    <p class="cooperation-desc">与国内高校和企业开展深度合作</p>
+                </div>
+                <div class="cooperation-card">
+                    <h3 class="cooperation-title">教育基金会</h3>
+                    <p class="cooperation-desc">支持教育事业发展</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 新闻公告视图 (News) -->
+        <section id="news-view" class="view-content">
+            <h2 class="section-title-large">News & Announcements</h2>
+            <div class="news-layout">
+                <div class="news-main">
+                    <article class="news-article">
+                        <div class="news-meta">行政通知 | 2026.02.05</div>
+                        <h3 class="news-title">加利顿大学关于完善"数字化宿舍"报修响应机制的通知</h3>
+                        <p class="news-excerpt">为了保障同学们在"数字宿舍"（即家里）的科研效率，学校行政处决定将 WiFi 故障响应级别提升至最高级...</p>
+                    </article>
+                    <article class="news-article">
+                        <div class="news-meta">公示信息 | 2026.02.01</div>
+                        <h3 class="news-title">2026年度"加利顿杰出奖学金"拟推荐名单公示</h3>
+                        <p class="news-excerpt">经各虚拟学院初评，现将具备"全天候宅家研究"潜力的 50 名同学进行公示...</p>
+                    </article>
+                </div>
+                <div class="lecture-sidebar">
+                    <h4 class="sidebar-title">学术讲座预约</h4>
+                    <div class="lecture-list">
+                        <div class="lecture-item">
+                            <div class="lecture-date active">
+                                <span class="date-day">08</span>
+                                <span class="date-month">Feb</span>
+                            </div>
+                            <div class="lecture-info">
+                                <h5 class="lecture-title">从猫咪干扰中抢救代码：一种鲁棒性算法研究</h5>
+                                <p class="lecture-details">主讲人: 张宅教授 | 线上 302 虚拟报告厅</p>
+                            </div>
+                        </div>
+                        <div class="lecture-item">
+                            <div class="lecture-date">
+                                <span class="date-day">12</span>
+                                <span class="date-month">Feb</span>
+                            </div>
+                            <div class="lecture-info">
+                                <h5 class="lecture-title">基于高性能计算的咖啡冲泡动力学模拟</h5>
+                                <p class="lecture-details">主讲人: Dr. Bean | Zoom 频道: 888-999-000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 教学办公视图 (Academic) -->
+        <section id="academic-view" class="view-content">
+            <div class="academic-layout">
+                <div class="academic-main">
+                    <h2 class="section-title-medium">学生教务中心 (Student Portal)</h2>
+                    <div class="portal-grid">
+                        <div class="portal-card">
+                            <h4 class="portal-card-label">今日课表</h4>
+                            <div class="schedule-list">
+                                <div class="schedule-item active">
+                                    <span class="schedule-time">09:00 - 11:00</span>
+                                    <p class="schedule-course">计算机图形学：如何生成逼真的沙发纹理</p>
+                                </div>
+                                <div class="schedule-item">
+                                    <span class="schedule-time">14:00 - 16:00</span>
+                                    <p class="schedule-course">午睡力学 (已结课)</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="portal-card">
+                            <h4 class="portal-card-label">成绩与绩点</h4>
+                            <div class="gpa-display">
+                                <span class="gpa-value">3.92</span>
+                                <span class="gpa-max">/ 4.0 GPA</span>
+                            </div>
+                            <button class="gpa-btn">申请电子成绩单</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="teacher-panel">
+                    <h3 class="panel-title">教师管理入口</h3>
+                    <div class="panel-buttons">
+                        <button class="panel-btn">录入课程成绩 <span>→</span></button>
+                        <button class="panel-btn">教学任务申报 <span>→</span></button>
+                        <button class="panel-btn">虚拟实验室管理 <span>→</span></button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 科研资源视图 (Research) -->
+        <section id="research-view" class="view-content">
+            <h2 class="section-title-medium">科研平台与资源 (Resources)</h2>
+            <div class="resources-grid">
+                <div class="resource-card primary">
+                    <h4 class="resource-label">数字图书馆</h4>
+                    <p class="resource-title">访问 20k+ 全文学术期刊</p>
+                    <span class="resource-tags">IEEE, ScienceDirect, Nature</span>
+                </div>
+                <div class="resource-card bordered">
+                    <h4 class="resource-label">高性能计算</h4>
+                    <div class="cluster-info">
+                        <span class="cluster-name">集群 A100-STU</span>
+                        <span class="cluster-status">运行中</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: 72.4%"></div>
+                    </div>
+                    <p class="progress-text">当前负载: 72.4%</p>
+                </div>
+                <div class="resource-card light">
+                    <h4 class="resource-label">大型仪器预约</h4>
+                    <div class="instrument-icon">🔬</div>
+                    <span class="instrument-name">远程电子显微镜</span>
+                </div>
+                <div class="resource-card light">
+                    <h4 class="resource-label">内部工作流</h4>
+                    <button class="oa-btn">启动 OA 系统</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 校园生活视图 (Life) -->
+        <section id="life-view" class="view-content">
+            <h2 class="section-title-medium">校园生活指南 (Campus Life)</h2>
+            <div class="life-layout">
+                <div class="life-main">
+                    <div class="network-map">
+                        <h4 class="map-title">虚拟校车 (WiFi 网络路径图)</h4>
+                        <div class="network-routes">
+                            <div class="route-item"><span>[01]</span> 核心路由器 -> 书房实验室 <span class="route-status good">(1ms)</span></div>
+                            <div class="route-item"><span>[02]</span> 核心路由器 -> 客厅咖啡站 <span class="route-status medium">(12ms)</span></div>
+                            <div class="route-item"><span>[03]</span> 核心路由器 -> 卧室休息区 <span class="route-status poor">(35ms)</span></div>
+                        </div>
+                    </div>
+                    <div class="life-services">
+                        <div class="service-card-small">
+                            <span class="service-icon">🍱</span>
+                            <h5 class="service-title">食堂信息</h5>
+                            <p class="service-desc">推荐外卖榜单更新中</p>
+                        </div>
+                        <div class="service-card-small">
+                            <span class="service-icon">🛠️</span>
+                            <h5 class="service-title">宿舍报修</h5>
+                            <p class="service-desc">灯泡不亮、光纤断线申请</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="campus-map">
+                    <div class="map-content">
+                        <h4 class="map-title-large">数字校园 3D 地图</h4>
+                        <p class="map-description">这是您的私人虚拟校区布局，目前 100% 覆盖。已标记 4 个高频活动点。</p>
+                        <button class="map-btn">进入虚拟漫游</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- AI Chat Widget -->
+    <div id="ai-chat-widget">
+        <button id="chat-toggle" class="chat-toggle">
+            <svg xmlns="http://www.w3.org/2000/svg" class="chat-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
+            </svg>
+            <span class="chat-toggle-text">教授在线</span>
+        </button>
+
+        <div id="chat-window" class="chat-window">
+            <div class="chat-header">
+                <span>STU 远程咨询专家</span>
+                <button id="close-chat" class="close-chat">&times;</button>
+            </div>
+            <div id="chat-messages" class="chat-messages">
+                <div class="chat-message bot">
+                    您好，我是加利顿大学在线教学委员会的专家。关于本校的数字行政、教务选课、科研计算或宿舍 WiFi 诊断，您有什么想咨询的？
+                </div>
+            </div>
+            <div class="chat-input-area">
+                <input type="text" id="chat-input" placeholder="请输入您的问题..." class="chat-input">
+                <button id="send-btn" class="send-btn">发送</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <div class="footer-logo">STU</div>
+                <h3 class="footer-title">加利顿大学</h3>
+                <p class="footer-address">
+                    中国·云端·加利顿虚拟省<br>
+                    邮编: 0xFFFFFFFF<br>
+                    电话: 400-WIFI-FAST
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-heading">电子资源</h4>
+                <ul class="footer-links">
+                    <li><a href="#">STU 邮箱系统</a></li>
+                    <li><a href="#">图书馆登录</a></li>
+                    <li><a href="#">VPN 配置指南</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-heading">校园联系</h4>
+                <ul class="footer-links">
+                    <li><a href="#">招生办咨询</a></li>
+                    <li><a href="#">行政公示中心</a></li>
+                    <li><a href="#">网络故障报修</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4 class="footer-heading">社区连接</h4>
+                <div class="social-icons">
+                    <div class="social-icon">𝕏</div>
+                    <div class="social-icon">gh</div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 STAY AT HOME UNIVERSITY | 加利顿大学 | 思想与舒适并存 MENS ET SOFA
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
