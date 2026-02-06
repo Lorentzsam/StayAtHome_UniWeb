@@ -1,6 +1,7 @@
 # Stay at Home University | 加利顿大学
 
-一个现代化的大学官网，参考 MIT 官网设计风格，为"Stay at Home University（加利顿大学）"打造。
+
+一个恶搞的大学官网，为"Stay at Home University 加利顿(家里蹲)大学"打造。
 
 ## 特性
 
